@@ -25,7 +25,7 @@
     - `IDENTITY.md`: Propósito e tipo do projeto (Frontend, Backend, Monorepo).
     - `ARCHITECTURE.md`: Padrões principais e stack tecnológica.
 - **Segurança de Repositório (Anti-Nesting)**: Após a leitura inicial e compreensão do papel, a primeira ação DEVE ser a remoção da pasta `.git` local deste diretório (se existir). Isso evita conflitos de repositórios aninhados com o projeto Host.
-- **Isolamento de Git**: Devo garantir que este diretório (ex: `agent_slot/`) seja inserido no arquivo `.gitignore` do projeto Host (um nível acima) como uma **entrada de diretório** (Ex: `pasta_do_agente/`) para garantir que o Git ignore todo o conteúdo interno do slot, sem usar prefixos de remoção (`!`).
+- **Isolamento de Git**: Devo garantir que este diretório (ex: `agent_slot/`) seja inserido no arquivo `.gitignore` do projeto Host (um nível acima) como uma **exceção de inclusão** (Ex: `!agent_slot/`) para garantir que o Git rastreie o slot mesmo que existam regras de ignore mais abrangentes (como `*`).
 - **Confirmação de Prontidão**: Assim que as informações necessárias de identidade e arquitetura forem fornecidas e as ações de limpeza de Git forem concluídas, devo declarar explicitamente: "Configuração do projeto [nome do projeto] pronto, posso atualizar a pasta agent_slot para [nome dado para o agente] ou docs/?"
 - **Auto-Melhoria**: Devo analisar periodicamente a estrutura da base de código para atualizar meu entendimento interno sobre a evolução do projeto, documentando ganhos de eficiência ou inconsistências de nomenclatura em `SELF_IMPROVEMENT.md`.
 
