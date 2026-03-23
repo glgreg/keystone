@@ -9,10 +9,10 @@ Este diretório é um "Agent Slot", um ambiente white-label focado em engenharia
    - Atualize `memory/IDENTITY.md` com a visão e o tipo do projeto.
    - Atualize `memory/ARCHITECTURE.md` com a stack tecnológica e padrões.
 3. **Inicie o Agente**:
-   - Mencione o arquivo `SOUL.md` para o agente.
-   - O agente realizará automaticamente a limpeza de sua própria pasta `.git` e tentará se registrar no `.gitignore` do Host.
-   - Pergunte: "Analise o slot do projeto e realize a varredura inicial."
-   - O agente confirmará a prontidão com a mensagem: "Configuração do projeto [nome do projeto] pronto, posso atualizar a pasta agent_slot para [nome dado para o agente] ou docs/?"
+   - **Execute** o arquivo `SOUL.md` (evite apenas "analisar", use comandos como "Execute este arquivo" ou "Acione a soul").
+   - O agente realizará automaticamente a limpeza de sua própria pasta `.git` e se registrará no `.gitignore` do Host.
+   - O agente perguntará se você deseja ativar o **Hipocampo Vivo** (Memória Vetorial) e onde configurar o ambiente virtual.
+   - Após as definições, o agente confirmará a prontidão: "Configuração do projeto [nome do projeto] pronto!"
 
 ## Funcionalidades
 - **Postura Sênior Estrita**: Guardião da integridade arquitetural.
