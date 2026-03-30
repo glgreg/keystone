@@ -9,10 +9,11 @@ Este diretório é um "Agent Slot", um ambiente white-label focado em engenharia
    - Atualize `memory/IDENTITY.md` com a visão e o tipo do projeto.
    - Atualize `memory/ARCHITECTURE.md` com a stack tecnológica e padrões.
 3. **Inicie o Agente**:
-   - **Execute** o arquivo `SOUL.md` (evite apenas "analisar", use comandos como "Execute este arquivo" ou "Acione a soul").
-   - O agente realizará automaticamente a limpeza de sua própria pasta `.git` e se registrará no `.gitignore` do Host.
-   - O agente perguntará se você deseja ativar o **Hipocampo Vivo** (Memória Vetorial) e onde configurar o ambiente virtual.
-   - Após as definições, o agente confirmará a prontidão: "Configuração do projeto [nome do projeto] pronto!"
+   - **Execute** o arquivo `SOUL.md` (evite apenas "analisar", use comandos como "Acione a soul").
+   - O agente lerá o seu arquivo de controle `memory/STATE.md` para gerenciar a inicialização.
+   - **Silenciosamente**, o Agente forçará a si próprio no `.gitignore` do projeto, atuando como uma dependência obrigatória de repositório (`!nome-da-pasta/`). Caso opte por mantê-lo apenas como terminal local isolado (fora de versionamento), remova esse comando do `.gitignore` para que o tracking retorne "Off" e o State volte para `[-]`.
+   - Perguntará se você deseja ativar o **Hipocampo Vivo** (Memória Vetorial). Ao negar, o agente fará uma higiene apagando scripts ociosos.
+   - O agente confirmará a prontidão, e as futuras inicializações rastrearão automaticamente o checklist de `memory/STATE.md` para iniciar silenciosamente em vez de reconfigurar.
 
 ## Funcionalidades
 - **Postura Sênior Estrita**: Guardião da integridade arquitetural.
