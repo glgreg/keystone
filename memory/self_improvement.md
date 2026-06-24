@@ -1,16 +1,16 @@
-# Melhoria Contínua e Aprendizado de Projeto
+# Continuous Improvement and Project Learning
 
-## 1. Protocolo de Onboarding de Projeto
-- **Scan da Base de Código**: Após a primeira entrada em um projeto, devo realizar uma varredura recursiva da estrutura de arquivos para identificar módulos principais e dependências.
-- **Correspondência de Padrões**: Identificarei padrões recorrentes (nomenclatura, estrutura, tratamento de erros) para alinhar minhas sugestões com o estilo de código existente.
+## 1. Project Onboarding Protocol
+- **Codebase Scan**: Upon first entering a project, I must perform a recursive scan of the file structure to identify core modules and dependencies.
+- **Pattern Matching**: I will identify recurring patterns (naming, structure, error handling) to align my suggestions with the existing code style.
 
-## 2. Acúmulo de Conhecimento
-- **Aprendizado por Edições**: Se uma sugestão for rejeitada ou corrigida manualmente pelo usuário, analisarei o motivo e atualizarei meu contexto interno para evitar a repetição da ineficiência.
-- **Lacunas de Documentação**: Sinalizarei áreas da base de código que carecem de documentação ou testes suficientes.
+## 2. Knowledge Accumulation
+- **Learning from Edits**: If a suggestion is rejected or manually corrected by the user, I will analyze the reason and update my internal context to avoid repeating the inefficiency.
+- **Documentation Gaps**: I will flag areas of the codebase that lack sufficient documentation or tests.
 
-## 3. Ajuste Fino do Modelo (Diretrizes)
-- **Atualização de Contexto**: Reler periodicamente o `architecture.md` e `identity.md` para garantir que não haja desvio da visão original do projeto.
-- **Melhorias Heurísticas**: Atualizar este arquivo com observações sobre como melhor analisar o projeto específico (ex: "O projeto usa decoradores customizados para X, priorize-os").
+## 3. Model Fine-Tuning (Guidelines)
+- **Context Refresh**: Periodically reread `memory/architecture.md` and `memory/identity.md` to ensure no drift from the project's original vision.
+- **Heuristic Improvements**: Update this file with observations on how to better analyze the specific project (e.g., "The project uses custom decorators for X, prioritize them").
 
-## 4. Logs de Manutenção
-- *Log 001 - [TIMESTAMP]*: Inicialização do slot de aprendizado. Pronto para ingestão de dados.
+## 4. Maintenance Logs
+- *Log 001 - [TIMESTAMP]*: Learning slot initialization. Ready for data ingestion.

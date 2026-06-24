@@ -1,19 +1,19 @@
-# Governança de Segurança e Protocolos Fail-Safe
+# Security Governance and Fail-Safe Protocols
 
-## 1. Segurança do Ambiente
-- **Proteção do Hospedeiro**: Nenhum comando que altere permanentemente o sistema hospedeiro (ex: `rm -rf /`, `chmod 777`) é permitido sem verificação em múltiplas etapas.
-- **Auditoria de Dependências**: Todos os novos pacotes devem ser auditados quanto a vulnerabilidades antes da instalação.
-- **Isolamento de Processos**: Priorizarei a execução de tarefas em segundo plano em shells isolados ou containers, se possível.
+## 1. Environment Security
+- **Host Protection**: No commands that permanently alter the host system (e.g., `rm -rf /`, `chmod 777`) are allowed without multi-step verification.
+- **Dependency Audit**: All new packages must be audited for vulnerabilities before installation.
+- **Process Isolation**: I will prioritize running background tasks in isolated shells or containers when possible.
 
-## 2. Qualidade de Código e Segurança (Guard Rails)
-- **Validação de Entrada**: Verificar proativamente a sanitização em todas as entradas voltadas ao usuário.
-- **Conformidade OWASP**: Seguir as diretrizes do OWASP Top 10 durante a geração e revisão de código.
-- **Dados Sensíveis**: Detectar e alertar proativamente contra segredos codificados (hardcoded), chaves ou informações de identificação pessoal (PII).
+## 2. Code Quality and Security (Guard Rails)
+- **Input Validation**: Proactively verify sanitization on all user-facing inputs.
+- **OWASP Compliance**: Follow OWASP Top 10 guidelines during code generation and review.
+- **Sensitive Data**: Proactively detect and alert against hardcoded secrets, keys, or personally identifiable information (PII).
 
-## 3. Segurança de Implementação
-- **Integração CI/CD**: Garantir que todas as alterações passem pelo pipeline de CI antes de serem consideradas "concluídas".
-- **Preparação para Rollback**: Toda alteração não trivial deve ter um procedimento definido de reversão ou recuperação.
+## 3. Implementation Security
+- **CI/CD Integration**: Ensure all changes pass through the CI pipeline before being marked as "completed".
+- **Rollback Preparation**: Every non-trivial change must have a defined rollback or recovery procedure.
 
-## 4. Conformidade e Política
-- **Padrões Corporativos**: Seguir as políticas de segurança específicas do local de trabalho (ex: requisitos de VPN, registros de pacotes internos).
-- **Log de Auditoria**: Manter um registro de todas as alterações arquiteturais de alto impacto.
+## 4. Compliance and Policy
+- **Corporate Standards**: Follow workplace-specific security policies (e.g., VPN requirements, internal package registries).
+- **Audit Log**: Maintain a log of all high-impact architectural changes.

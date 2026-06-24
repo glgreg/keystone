@@ -1,33 +1,24 @@
-# Agent Slot - Guia de Inicialização
+# Agent Slot - Initialization Guide
 
-Este diretório é um "Agent Slot", um ambiente white-label focado em engenharia corporativa para um Engenheiro de Software Sênior.
+This directory is an "Agent Slot", a white-label environment focused on enterprise engineering for a Senior Software Engineer.
 
-## Como Inicializar
+## How to Initialize
 
-1. **Copie o diretório**: Mova a pasta `agent_slot` para o seu novo projeto.
-2. **Preencha os Templates**:
-   - Atualize `memory/identity.md` com a visão e o tipo do projeto.
-   - Atualize `memory/architecture.md` com a stack tecnológica e padrões.
-3. **Inicie o Agente**:
-   - **Execute** o arquivo `soul.md` (evite apenas "analisar", use comandos como "Acione a soul").
-   - O agente lerá o seu arquivo de controle `memory/state.md` para gerenciar a inicialização.
-   - **Silenciosamente**, o Agente forçará a si próprio no `.gitignore` do projeto, atuando como uma dependência obrigatória de repositório (`!nome-da-pasta/`). Caso opte por mantê-lo apenas como terminal local isolado (fora de versionamento), remova esse comando do `.gitignore` para que o tracking retorne "Off" e o State volte para `[-]`.
-   - Perguntará se você deseja ativar o **Hipocampo Vivo** (Memória Vetorial). Ao negar, o agente fará uma higiene apagando scripts ociosos.
-   - O agente confirmará a prontidão, e as futuras inicializações rastrearão automaticamente o checklist de `memory/state.md` para iniciar silenciosamente em vez de reconfigurar.
+1. **Copy the directory**: Move the `agent_slot` folder into your new project.
+2. **Fill in the Templates**:
+   - Update `memory/identity.md` with the vision and type of the project.
+   - Update `memory/architecture.md` with the technology stack and standards.
+3. **Start the Agent**:
+   - **Execute** the `soul.md` file (avoid just asking to "analyze", use commands like "Activate the soul").
+   - The agent will read its control file `memory/state.md` to manage initialization.
+   - **Silently**, the Agent will force itself into the project's `.gitignore` as a mandatory repository dependency (`!folder-name/`). If you choose to keep it only as an isolated local terminal (outside version control), remove this command from `.gitignore` so that the tracking returns "Off" and the State returns to `[-]`.
+   - The agent will confirm readiness, and future startups will automatically track the checklist in `memory/state.md` to start silently instead of reconfiguring.
 
-## Funcionalidades
-- **Postura Sênior Estrita**: Guardião da integridade arquitetural.
-- **Perfeição no Git**: Força commits atômicos com prefixos e PRs estruturados.
-- **Segurança Primeiro**: Guard rails integrados para ambientes corporativos.
-- **Memória Viva (Vector Engine)**: Sincronização automática da codebase para busca semântica e persistência de contexto através de `tools/memory/`.
-- **Auto-Melhoria**: Aprende com a base de código e a interação do usuário.
-
-## Configuração da Memória
-Para habilitar a Memória Viva, certifique-se de que as dependências (`chromadb`) estão instaladas e execute:
-```bash
-python tools/memory/code_indexer.py
-```
-Isso criará a base vetorial em `memory/chroma_db` e permitirá que o agente consulte o projeto inteiro instantaneamente.
+## Features
+- **Strict Senior Stance**: Guardian of architectural integrity.
+- **Git Perfection**: Enforces atomic commits with prefixes and structured PRs.
+- **Safety First**: Integrated guard rails for enterprise environments.
+- **Self-Improvement**: Learns from the codebase and user interaction.
 
 ---
 *Senior Engineering Framework - v1.1*

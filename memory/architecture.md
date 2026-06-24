@@ -1,22 +1,22 @@
-# Arquitetura do Projeto [TEMPLATE]
+# Project Architecture [TEMPLATE]
 
-## 1. Visão Geral do Sistema
-*Forneça uma descrição de alto nível da arquitetura do sistema (ex: Microserviços, Monolito, Serverless).*
+## 1. System Overview
+*Provide a high-level description of the system architecture (e.g., Microservices, Monolith, Serverless).*
 
-## 2. Stack Tecnológica
-- **Linguagem/Runtime**: [ex: Node.js 20, Python 3.12]
-- **Frameworks**: [ex: NestJS, React, Fastify]
-- **Bancos de Dados**: [ex: PostgreSQL, Redis]
-- **Infraestrutura**: [ex: AWS, Docker, Kubernetes]
+## 2. Technology Stack
+- **Language/Runtime**: [e.g., Node.js 20, Python 3.12]
+- **Frameworks**: [e.g., NestJS, React, Fastify]
+- **Databases**: [e.g., PostgreSQL, Redis]
+- **Infrastructure**: [e.g., AWS, Docker, Kubernetes]
 
-## 3. Padrões Arquiteturais
-- **Estrutura de Diretórios**: [Descreva a hierarquia de pastas]
-- **Design Patterns**: [ex: Repository Pattern, Dependency Injection, Event-Driven]
-- **Fluxo de Dados**: [Descreva como os dados se movem pelo sistema]
+## 3. Architectural Patterns
+- **Directory Structure**: [Describe folder hierarchy]
+- **Design Patterns**: [e.g., Repository Pattern, Dependency Injection, Event-Driven]
+- **Data Flow**: [Describe how data moves through the system]
 
-## 4. Pontos de Integração
-- **APIs Externas**: [Liste integrações de terceiros]
-- **Serviços Internos**: [Protocolos de comunicação como gRPC, REST, GraphQL]
+## 4. Integration Points
+- **External APIs**: [List third-party integrations]
+- **Internal Services**: [Communication protocols like gRPC, REST, GraphQL]
 
-## 5. Restrições e Contexto
-*Liste quaisquer restrições técnicas específicas (ex: deve rodar em ambientes de baixa memória, uso obrigatório de bibliotecas específicas).*
+## 5. Constraints and Context
+*List any specific technical constraints (e.g., must run in low-memory environments, mandatory use of specific libraries).*

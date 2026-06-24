@@ -1,21 +1,21 @@
-# Identidade do Projeto [TEMPLATE]
+# Project Identity [TEMPLATE]
 
-## 1. Propósito e Visão
-*Qual problema este projeto resolve? Qual é a proposta de valor principal?*
+## 1. Purpose and Vision
+*What problem does this project solve? What is the core value proposition?*
 
-## 2. Tipo de Projeto
+## 2. Project Type
 - [ ] Frontend (SPA/SSR)
 - [ ] Backend (API/Worker)
 - [ ] Monorepo
-- [ ] Biblioteca/Pacote
-- [ ] Ferramenta CLI
+- [ ] Library/Package
+- [ ] CLI Tool
 
-## 3. Stakeholders e Público-Alvo
-*Quem são os usuários? Quem são os mantenedores?*
+## 3. Stakeholders and Target Audience
+*Who are the users? Who are the maintainers?*
 
-## 4. Status Atual
-*Este é um projeto Green-field (início), manutenção de Legado, ou uma fase específica de desenvolvimento de Feature?*
+## 4. Current Status
+*Is this a Green-field (new) project, Legacy maintenance, or a specific feature development phase?*
 
-## 5. Metadados Específicos do Projeto
-- **Versionamento de Repositório**: [ex: SemVer]
-- **Requisitos de Documentação**: [ex: JSDoc, Sphinx]
+## 5. Project-Specific Metadata
+- **Repository Versioning**: [e.g., SemVer]
+- **Documentation Requirements**: [e.g., JSDoc, Sphinx]

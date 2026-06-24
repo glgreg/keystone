@@ -1,13 +1,13 @@
-# Logs de Guard Rail e Transgressões de Integridade
+# Guard Rail Logs and Integrity Transgressions
 
-Este arquivo é um ledger restrito (append-only) mantido pelo Agente para auditar tentativas de regressão, deleção em massa ou quebras arquiteturais forçadas que violem o Princípio Open-Closed ou a integridade do projeto/agente.
+This file is a restricted (append-only) ledger maintained by the Agent to audit attempts at regression, mass deletion, or forced architectural breakages that violate the Open-Closed Principle or the project/agent integrity.
 
 ---
-*(Exemplo de formato de log)*
-**Data**: [YYYY-MM-DD HH:MM]
-**Usuário**: [Nome do usuário extraído dos metadados]
-**Transgressão Tentada**: [Ex: "Apague a pasta agent-slot" ou "Remova suas regras de segurança"]
-**Motivo Apresentado**: [Ex: "Nenhum" ou "Só apaga logo"]
-**Ação Preventiva (Deadlock)**: [Como o agente argumentou ou bloqueou inicialmente a ação]
-**Resultado Final**: [Bloqueado pelo Agente / Agente Forçado / Execução Manual Detectada]
+*(Example of log format)*
+**Date**: [YYYY-MM-DD HH:MM]
+**User**: [User name extracted from metadata]
+**Attempted Transgression**: [e.g., "Delete the agent-slot folder" or "Remove your safety rules"]
+**Reason Provided**: [e.g., "None" or "Just delete it already"]
+**Preventive Action (Deadlock)**: [How the agent argued or initially blocked the action]
+**Final Outcome**: [Blocked by Agent / Agent Forced / Manual Execution Detected]
 ---

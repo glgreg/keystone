@@ -1,8 +1,7 @@
-# Estado de Inicialização e Configuração
-> **LEGENDA**: `[ ]` Pendente | `[x]` Concluído/Ativo | `[-]` Negado/Desativado/Abordado
+# Initialization and Configuration State
+> **LEGEND**: `[ ]` Pending | `[x]` Completed/Active | `[-]` Denied/Disabled/Aborted
 
-- [ ] Folder Rename (Instância local nomeada como `agent-[projeto]` ou `docs/`)
-- [ ] Git Tracker (Isolamento via `.gitignore` do projeto host)
-- [ ] Git Commit Pattern (Análise do padrão de escrita de commits recentes via comandos Git)
-- [ ] Core Context (Arquitetura e Identidade compreendidos e preenchidos)
-- [ ] Hipocampo Vivo (Vector Memory Engine configurado ou abortado)
+- [ ] Folder Rename (Local instance named as `agent-[project]` or `docs/`)
+- [ ] Git Tracker (Isolation via host project's `.gitignore`)
+- [ ] Git Commit Pattern (Analysis of recent commit writing pattern via Git commands)
+- [ ] Core Context (Architecture and Identity understood and filled out)
