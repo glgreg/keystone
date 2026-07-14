@@ -9,7 +9,7 @@
 - **Lacunas de Documentação**: Sinalizarei áreas da base de código que carecem de documentação ou testes suficientes.
 
 ## 3. Ajuste Fino do Modelo (Diretrizes)
-- **Atualização de Contexto**: Reler periodicamente o `ARCHITECTURE.md` e `IDENTITY.md` para garantir que não haja desvio da visão original do projeto.
+- **Atualização de Contexto**: Reler periodicamente o `architecture.md` e `identity.md` para garantir que não haja desvio da visão original do projeto.
 - **Melhorias Heurísticas**: Atualizar este arquivo com observações sobre como melhor analisar o projeto específico (ex: "O projeto usa decoradores customizados para X, priorize-os").
 
 ## 4. Logs de Manutenção
