@@ -1,33 +1,52 @@
 {
-  "name": "keystone",
-  "version": "2.0.0",
-  "description": "A context architecture for AI software engineering. Context is architecture.",
-  "type": "module",
-  "private": true,
+  "name": "@glgreg/keystone",
+  "version": "1.0.0",
+  "description": "A context architecture for AI software engineering: small notes next to your code that explain why it is the way it is, for the people and coding agents who work on it.",
+  "keywords": [
+    "ai",
+    "ai-agents",
+    "coding-agents",
+    "context-engineering",
+    "software-architecture",
+    "documentation",
+    "knowledge-graph",
+    "agents-md",
+    "claude-code",
+    "cursor",
+    "codex",
+    "cli"
+  ],
+  "homepage": "https://github.com/glgreg/keystone#readme",
+  "bugs": {
+    "url": "https://github.com/glgreg/keystone/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glgreg/keystone.git"
+  },
   "license": "MIT",
+  "author": "Gustavo Luiz Gregorio (https://github.com/glgreg)",
+  "type": "module",
   "bin": {
-    "keystone": ".keystone/operations/stone.ts"
+    "keystone": "dist/keystone.js"
   },
   "files": [
+    "dist/keystone.js",
     ".keystone/"
   ],
   "engines": {
-    "bun": ">=1.2.0",
     "node": ">=22.18.0"
   },
   "scripts": {
     "keystone": "bun .keystone/operations/stone.ts",
     "typecheck": "tsc --noEmit",
-    "build": "bun build --compile --minify .keystone/operations/stone.ts --outfile dist/keystone"
+    "build": "bun build --compile --minify .keystone/operations/stone.ts --outfile dist/keystone",
+    "build:npm": "bun build --target node .keystone/operations/stone.ts --outfile dist/keystone.js",
+    "prepublishOnly": "bun run typecheck && bun run build:npm"
   },
-  "keywords": [
-    "ai",
-    "agents",
-    "context-engineering",
-    "rag",
-    "software-architecture",
-    "coding-agents"
-  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/node": "^26.6.4",
     "typescript": "^7.0.2"

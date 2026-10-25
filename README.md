@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="./LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-f59e0b"></a>
-  <img alt="version" src="https://img.shields.io/badge/version-2.0.0-0b1120">
+  <img alt="version" src="https://img.shields.io/badge/version-1.0.0-0b1120">
   <img alt="runtime" src="https://img.shields.io/badge/runtime-Bun%20%7C%20Node%2022.18%2B-334155">
 </p>
 
@@ -40,7 +40,7 @@ It is just files and conventions. Any agent that can read Markdown can use it: C
 ```text
 your-project/
 ├── .keystone/                  # The key
-│   ├── soul.md                 # How agents should work in this project
+│   ├── protocol.md             # How agents should work in this project
 │   ├── identity.md             # What the project is and who it is for
 │   ├── architecture.md         # System overview and the index of stones
 │   ├── standards.md            # Code, testing and Git conventions
@@ -70,7 +70,7 @@ You need [Bun](https://bun.sh) 1.2+ or Node.js 22.18+ to run the CLI. The stones
 **1. Copy the key into your project**
 
 ```sh
-git clone --depth 1 https://github.com/gugregorio/keystone.git /tmp/keystone
+git clone --depth 1 https://github.com/glgreg/keystone.git /tmp/keystone
 cp -r /tmp/keystone/.keystone ./
 ```
 
@@ -79,7 +79,7 @@ cp -r /tmp/keystone/.keystone ./
 Add one line to whatever instruction file your agent reads (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.cursorrules`...):
 
 ```markdown
-This project uses Keystone for architectural context. Before planning or changing code, read `.keystone/soul.md` and follow it.
+This project uses Keystone for architectural context. Before planning or changing code, read `.keystone/protocol.md` and follow it.
 ```
 
 **3. Activate it**
@@ -87,7 +87,7 @@ This project uses Keystone for architectural context. Before planning or changin
 Ask your agent:
 
 ```text
-Activate the Keystone soul at .keystone/soul.md.
+Activate the Keystone protocol at .keystone/protocol.md.
 ```
 
 The agent looks around the repository and walks through a short setup. It drafts `identity.md` and `architecture.md` from what it finds, proposes your commit convention based on `git log`, and suggests a first set of stones for the main modules. It asks everything in a single message, waits for your answers, and finishes with **"Keystone ready."** You review each step once, and it remembers your answers in `state.md`.
@@ -205,7 +205,7 @@ bun build --compile .keystone/operations/stone.ts --outfile keystone
 
 ## Roadmap
 
-- Distribution through `npx keystone` and prebuilt binaries
+- Publishing to npm as `@glgreg/keystone`, plus prebuilt binaries
 - An interactive graph explorer in the terminal
 - Optional semantic search as a fallback for large graphs
 - Starter templates per stone type

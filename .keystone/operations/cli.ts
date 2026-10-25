@@ -17,7 +17,7 @@ import type { Context, Io } from "./core/context.ts";
 import { resolveRoot } from "./core/workspace.ts";
 import { KeystoneError } from "./types.ts";
 
-export const VERSION = "2.0.0";
+export const VERSION = "1.0.0";
 
 type Options = NonNullable<ParseArgsConfig["options"]>;
 
