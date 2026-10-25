@@ -25,7 +25,7 @@ Load context on demand, in this order, and stop as soon as you have what the tas
 2. **Stone**: the stone that governs the area you are about to change, plus the summaries of its related stones.
 3. **Code**: the source files themselves, read with the stone's invariants in mind.
 
-The code is the final source of truth for syntax and behavior; stones are the source of truth for intent, decisions and constraints. When they disagree, surface the conflict to the user instead of silently picking one.
+The code is the final source of truth for syntax and behavior; stones are the source of truth for intent, decisions and constraints. When they disagree, surface the conflict to the user instead of silently picking one. A stone tells you where to look and why; before changing a value or contract it describes, search the code for every place that relies on it, since a stone records intent and may not list every occurrence.
 
 Operations (run from the project root):
 
@@ -36,7 +36,7 @@ Operations (run from the project root):
 .keystone/bin/keystone stone doctor              # integrity audit of the Key and stones
 ```
 
-If neither Bun nor Node is available, read the files directly: stones are plain Markdown and the protocol does not depend on the tooling. Every command documents its behavior and options (`keystone stone <command> --help`), so there is no need to read the CLI source in `.keystone/operations/`.
+If neither Bun nor Node is available, read the files directly: stones are plain Markdown and the protocol does not depend on the tooling. Every command documents its behavior and options (`keystone stone <command> --help`), so there is no need to read the CLI source.
 
 ## 3. Engineering Stance
 
@@ -64,14 +64,18 @@ Write stones as descriptions of the system ("Access tokens expire after 15 minut
 
 ## 6. Activation
 
-When the user asks to activate, start or execute this protocol, read `.keystone/state.md` and handle only the pending `[ ]` items, in order. Items marked `[x]` (done) or `[-]` (declined) are never revisited.
+When the user asks to activate, start or set up Keystone, read `.keystone/state.md` and handle only the pending `[ ]` items, in order. Items marked `[x]` (done) or `[-]` (declined) are never revisited.
 
-1. **Versioning**: run `git check-ignore -q .keystone/protocol.md`. If the path is not ignored, mark `[x]`. If it is ignored, explain that the Key will not be shared with the team and ask whether to add `!.keystone/` to `.gitignore` (`[x]`) or keep Keystone local-only (`[-]`). If the project is not a Git repository, mark `[-]`.
-2. **Core Context**: if `identity.md` or `architecture.md` still contain `<!-- keystone:template -->`, inspect the repository (manifests, directory layout, README, entry points) and draft both files from evidence. Present the draft, apply it after confirmation, remove the marker and mark `[x]`.
+Treat what the repository already has as evidence: its README, docs, agent instruction files (`AGENTS.md`, `CLAUDE.md`, skills) and any older agent setup Keystone replaces. Documents that stay maintained on their own are linked from the Key, so each fact keeps a single home; content from a setup that Keystone replaces moves into the Key or into stones.
+
+1. **Versioning**: run `git check-ignore -q .keystone/protocol.md`. If the path is not ignored, mark `[x]`. If it is ignored, explain that the Key will not be shared with the team and ask whether to add `!.keystone/` to `.gitignore` (`[x]`) or keep Keystone local-only (`[-]`). If the project is not a Git repository, mark `[-]`. If the project publishes a package or deploys directories as static files, also make sure `.keystone/` and `.stone.*.md` files stay out of what ships (`files` in `package.json`, `.npmignore`, the deploy configuration).
+2. **Core Context**: for each of `identity.md`, `architecture.md` and `standards.md` that still contains `<!-- keystone:template -->`, inspect the repository (manifests, directory layout, docs, entry points, configuration) and draft it from evidence. Present the drafts, apply them after confirmation, remove the markers and mark `[x]`.
 3. **Commit Convention**: run `git log -n 15 --format=%s`, describe the convention you observe, and ask whether it should be adopted. If accepted, record it in the "Version Control" section of `standards.md` and mark `[x]`; if rejected, mark `[-]`. Ask once per activation.
-4. **Stone Map**: if the project has no stones, propose an initial decomposition (one stone per module that owns invariants or is depended upon), create the approved ones with `keystone stone create`, fill them from the code, link them, and run `keystone stone doctor`. Mark `[x]` when doctor reports no errors.
+4. **Stone Map**: if the project has no stones, propose an initial decomposition (one stone per module that owns invariants or is depended upon), create the approved ones with `keystone stone create`, then replace each template body with what you learned from the code, and link them. Mark `[x]` when `keystone stone doctor` reports no errors; it flags stones that still hold template text.
 
-Batch your questions into a single message so the user can answer them at once. When every item is `[x]` or `[-]`, reply with exactly **"Keystone ready."** followed by a one-paragraph summary of the project as you now understand it.
+Batch your questions into a single message so the user can answer them at once. When the user has explicitly told you to proceed without them, apply the option you would recommend, mark the item `[x]` with a short note such as `(assumed: Conventional Commits)`, and list every assumption in your closing summary so the user can review them later.
+
+When every item is `[x]` or `[-]`, reply with **"Keystone ready."** followed by a one-paragraph summary of the project as you now understand it.
 
 ---
 *Keystone 1.0 - Context is architecture.*

@@ -1,5 +1,8 @@
 # Engineering Standards
 
+<!-- keystone:template -->
+<!-- Replace the examples below with this project's conventions, then delete the marker above. -->
+
 ## 1. Version Control
 
 ### Commit Messages
