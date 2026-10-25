@@ -8,7 +8,7 @@ import { csv, plural } from "../core/context.ts";
 import type { CommandResult, Context } from "../core/context.ts";
 import { updateIndex } from "../core/key.ts";
 import { STONE_ID_PATTERN, emptyRelations, renderStone, stoneFileName, titleFromId, toPosix, writeStone } from "../core/stone.ts";
-import { indexById, keyPath, scan } from "../core/workspace.ts";
+import { IGNORED_DIRS, indexById, keyPath, scan } from "../core/workspace.ts";
 import { KeystoneError, STONE_TYPES } from "../types.ts";
 import type { StoneMeta } from "../types.ts";
 
@@ -42,7 +42,7 @@ export interface CreateOptions {
   "depends-on"?: string;
 }
 
-function loadTemplate(root: string): string {
+export function loadTemplate(root: string): string {
   const path = keyPath(root, "stoneTemplate");
   return existsSync(path) ? readFileSync(path, "utf8") : DEFAULT_STONE_BODY;
 }
@@ -70,8 +70,15 @@ export function create(ctx: Context, id: string | undefined, options: CreateOpti
   if (!existsSync(dir) || !statSync(dir).isDirectory()) {
     throw new KeystoneError(`directory '${options.path}' does not exist`);
   }
-  if (toPosix(relDir).split("/").some((part) => part.startsWith("."))) {
+  const parts = toPosix(relDir).split("/");
+  if (parts.some((part) => part.startsWith("."))) {
     throw new KeystoneError(`stones inside hidden directories are not scanned: '${options.path}'`);
+  }
+  const ignored = parts.find((part) => IGNORED_DIRS.has(part));
+  if (ignored) {
+    throw new KeystoneError(
+      `stones inside '${ignored}/' are not scanned (generated or vendored code): '${options.path}'. Place the stone next to the source that produces it.`,
+    );
   }
 
   const { stones } = scan(ctx.root);
@@ -110,7 +117,7 @@ export function create(ctx: Context, id: string | undefined, options: CreateOpti
   const index = updateIndex(ctx.root, scan(ctx.root).stones);
   const relFile = toPosix(relative(ctx.root, filePath));
   ctx.io.stdout(`Created ${relFile}`);
-  if (dependsOn.length > 0) ctx.io.stdout(`Linked ${plural(dependsOn.length, "dependency")}: ${dependsOn.join(", ")}`);
+  if (dependsOn.length > 0) ctx.io.stdout(`Linked ${plural(dependsOn.length, "dependency", "dependencies")}: ${dependsOn.join(", ")}`);
   if (index === "updated") ctx.io.stdout("Updated stone index in .keystone/architecture.md");
   if (index === "missing-markers") ctx.io.stderr("warning: .keystone/architecture.md has no index markers; index not updated");
   if (!meta.summary) ctx.io.stdout("Next: fill in 'summary' and the body sections, then run 'keystone stone doctor'.");

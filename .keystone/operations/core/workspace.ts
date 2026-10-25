@@ -24,7 +24,7 @@ export const KEY_FILES = {
  * Directories never scanned for stones. Hidden directories (including the Key
  * itself, `.git`, editor folders and caches) are skipped as well.
  */
-const IGNORED_DIRS = new Set([
+export const IGNORED_DIRS = new Set([
   "node_modules",
   "dist",
   "build",
@@ -72,6 +72,8 @@ function collectStonePaths(dir: string, out: string[]): void {
   for (const entry of entries) {
     if (entry.isDirectory()) {
       if (entry.name.startsWith(".") || IGNORED_DIRS.has(entry.name)) continue;
+      // A nested directory with its own Key is a separate project with its own graph.
+      if (existsSync(join(dir, entry.name, KEY_DIR))) continue;
       collectStonePaths(join(dir, entry.name), out);
     } else if (entry.isFile() && STONE_FILE_PATTERN.test(entry.name)) {
       out.push(join(dir, entry.name));
