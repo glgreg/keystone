@@ -29,7 +29,7 @@ export interface DoctorReport {
   diagnostics: Diagnostic[];
 }
 
-const REQUIRED_KEY_FILES: Array<keyof typeof KEY_FILES> = ["soul", "architecture", "state"];
+const REQUIRED_KEY_FILES: Array<keyof typeof KEY_FILES> = ["protocol", "architecture", "state"];
 const RECOMMENDED_KEY_FILES: Array<keyof typeof KEY_FILES> = ["identity", "standards"];
 
 function checkKey(root: string, push: (d: Diagnostic) => void): void {

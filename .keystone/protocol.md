@@ -1,4 +1,4 @@
-# Keystone Soul
+# Keystone Protocol
 
 This repository uses **Keystone**, a context architecture for AI-assisted software engineering. Keystone describes the system as a graph of small, co-located context files so that any agent can find the part of the architecture that governs a task before touching code.
 
@@ -64,9 +64,9 @@ Write stones as descriptions of the system ("Access tokens expire after 15 minut
 
 ## 6. Activation
 
-When the user asks to activate, start or execute this soul, read `.keystone/state.md` and handle only the pending `[ ]` items, in order. Items marked `[x]` (done) or `[-]` (declined) are never revisited.
+When the user asks to activate, start or execute this protocol, read `.keystone/state.md` and handle only the pending `[ ]` items, in order. Items marked `[x]` (done) or `[-]` (declined) are never revisited.
 
-1. **Versioning**: run `git check-ignore -q .keystone/soul.md`. If the path is not ignored, mark `[x]`. If it is ignored, explain that the Key will not be shared with the team and ask whether to add `!.keystone/` to `.gitignore` (`[x]`) or keep Keystone local-only (`[-]`). If the project is not a Git repository, mark `[-]`.
+1. **Versioning**: run `git check-ignore -q .keystone/protocol.md`. If the path is not ignored, mark `[x]`. If it is ignored, explain that the Key will not be shared with the team and ask whether to add `!.keystone/` to `.gitignore` (`[x]`) or keep Keystone local-only (`[-]`). If the project is not a Git repository, mark `[-]`.
 2. **Core Context**: if `identity.md` or `architecture.md` still contain `<!-- keystone:template -->`, inspect the repository (manifests, directory layout, README, entry points) and draft both files from evidence. Present the draft, apply it after confirmation, remove the marker and mark `[x]`.
 3. **Commit Convention**: run `git log -n 15 --format=%s`, describe the convention you observe, and ask whether it should be adopted. If accepted, record it in the "Version Control" section of `standards.md` and mark `[x]`; if rejected, mark `[-]`. Ask once per activation.
 4. **Stone Map**: if the project has no stones, propose an initial decomposition (one stone per module that owns invariants or is depended upon), create the approved ones with `keystone stone create`, fill them from the code, link them, and run `keystone stone doctor`. Mark `[x]` when doctor reports no errors.
@@ -74,4 +74,4 @@ When the user asks to activate, start or execute this soul, read `.keystone/stat
 Batch your questions into a single message so the user can answer them at once. When every item is `[x]` or `[-]`, reply with exactly **"Keystone ready."** followed by a one-paragraph summary of the project as you now understand it.
 
 ---
-*Keystone 2.0 - Context is architecture.*
+*Keystone 1.0 - Context is architecture.*

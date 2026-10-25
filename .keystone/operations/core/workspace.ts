@@ -12,7 +12,7 @@ import type { ScanResult, Stone } from "../types.ts";
 export const KEY_DIR = ".keystone";
 
 export const KEY_FILES = {
-  soul: "soul.md",
+  protocol: "protocol.md",
   architecture: "architecture.md",
   identity: "identity.md",
   standards: "standards.md",
