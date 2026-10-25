@@ -1,0 +1,13 @@
+# Local-only workspaces (not part of the published project)
+docs/
+testes/
+results/
+CONVERSATION_MEMORY.md
+
+# Dependencies and build output
+node_modules/
+dist/
+
+# OS and editor files
+.DS_Store
+*.log
