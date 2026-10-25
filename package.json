@@ -1,0 +1,34 @@
+{
+  "name": "keystone",
+  "version": "2.0.0",
+  "description": "A context architecture for AI software engineering. Context is architecture.",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "keystone": ".keystone/operations/stone.ts"
+  },
+  "files": [
+    ".keystone/"
+  ],
+  "engines": {
+    "bun": ">=1.2.0",
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "keystone": "bun .keystone/operations/stone.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "bun build --compile --minify .keystone/operations/stone.ts --outfile dist/keystone"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "context-engineering",
+    "rag",
+    "software-architecture",
+    "coding-agents"
+  ],
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,22 @@
+#!/bin/sh
+# Keystone portable launcher.
+# Resolution order: compiled binary on PATH, Bun, Node (>= 22.18, native type stripping).
+# Usage: .keystone/bin/keystone stone <command> [options]
+
+set -e
+
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+ENTRY="$SCRIPT_DIR/../operations/stone.ts"
+
+if command -v bun >/dev/null 2>&1; then
+  exec bun "$ENTRY" "$@"
+fi
+
+if command -v node >/dev/null 2>&1; then
+  exec node --no-warnings "$ENTRY" "$@"
+fi
+
+echo "keystone: neither 'bun' nor 'node' was found on PATH." >&2
+echo "Install Bun (https://bun.sh) or Node.js >= 22.18, or use a compiled 'keystone' binary." >&2
+echo "Stones are plain Markdown: you can still read .stone.*.md files directly." >&2
+exit 127
