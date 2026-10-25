@@ -4,6 +4,7 @@
   "description": "A context architecture for AI software engineering. Context is architecture.",
   "type": "module",
   "private": true,
+  "license": "MIT",
   "bin": {
     "keystone": ".keystone/operations/stone.ts"
   },
