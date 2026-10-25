@@ -10,6 +10,7 @@ import type { ParseArgsConfig } from "node:util";
 import { create } from "./commands/create.ts";
 import { doctor } from "./commands/doctor.ts";
 import { graph } from "./commands/graph.ts";
+import { init } from "./commands/init.ts";
 import { relate } from "./commands/relate.ts";
 import { search } from "./commands/search.ts";
 import { show } from "./commands/show.ts";
@@ -27,6 +28,7 @@ const GLOBAL_OPTIONS: Options = {
 };
 
 const COMMAND_OPTIONS: Record<string, Options> = {
+  init: {},
   create: {
     path: { type: "string", short: "p" },
     type: { type: "string", short: "t" },
@@ -61,9 +63,11 @@ const COMMAND_OPTIONS: Record<string, Options> = {
 export const HELP = `Keystone ${VERSION} - context architecture for AI software engineering
 
 Usage:
+  keystone init
   keystone stone <command> [options]
 
 Commands:
+  init                       Install or update the Key in this project (.keystone/)
   create <id> --path <dir>   Scaffold a co-located stone (.stone.<id>.md)
       [--type module|service|entity|policy|integration] [--tags a,b]
       [--summary <text>] [--owner <team>] [--depends-on a,b]
@@ -85,6 +89,22 @@ Run 'keystone stone <command> --help' for details and examples.
 Exit codes: 0 success, 1 failure (no search results, doctor errors, invalid input).`;
 
 export const COMMAND_HELP: Record<string, string> = {
+  init: `Usage: keystone init [--root <dir>]
+
+Installs the Key in the project (the enclosing Git repository, or --root):
+.keystone/ with the protocol, Key templates and the CLI, plus a pointer to
+.keystone/protocol.md in the agent instruction files the project already has
+(AGENTS.md, CLAUDE.md, GEMINI.md, .github/copilot-instructions.md), or in a
+new AGENTS.md when there are none.
+
+Safe to run again: project files (identity, architecture, standards, state,
+stone template) are never overwritten, while the protocol and the CLI are
+refreshed, so re-running init from a newer version upgrades them.
+
+After a fresh install, follow section 6 (Activation) of .keystone/protocol.md.
+
+Example:
+  npx @glgreg/keystone init`,
   create: `Usage: keystone stone create <id> --path <dir> [options]
 
 Writes <dir>/.stone.<id>.md: a generated frontmatter plus the body template
@@ -208,6 +228,7 @@ export function run(argv: string[], env: RunEnv): number {
       return 0;
     }
     const { values, positionals } = parse(command, args.slice(1));
+    if (command === "init") return init(env.cwd, env.io, { root: values.root as string | undefined });
     const ctx: Context = {
       cwd: env.cwd,
       root: resolveRoot(values.root as string | undefined, env.cwd),
