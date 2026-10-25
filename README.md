@@ -203,12 +203,6 @@ If you'd like a single executable for CI or a minimal container, compile one:
 bun build --compile .keystone/operations/stone.ts --outfile keystone
 ```
 
-## Upgrading from Agent Slot (v1)
-
-Keystone 2 replaces the `soul.md` + `memory/` layout with the `.keystone/` folder. To migrate, move your filled-in `identity.md`, `architecture.md` and `standards.md` into `.keystone/`, remove the old folder, and activate again; the agent skips any step that is already done.
-
-Some v1 files have new homes. Security requirements now sit in the stone of the module they protect, where they are read at the moment they matter. Guard-rail logs gave way to a single safety policy in the soul: before anything irreversible, the agent explains the impact and waits for your confirmation.
-
 ## Roadmap
 
 - Distribution through `npx keystone` and prebuilt binaries
