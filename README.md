@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/keystone-banner.svg" alt="Keystone - Context is architecture." width="100%">
+  <img src="https://raw.githubusercontent.com/glgreg/keystone/master/assets/keystone-banner.svg" alt="Keystone - Context is architecture." width="100%">
 </p>
 
 <p align="center">
@@ -8,9 +8,9 @@
 </p>
 
 <p align="center">
-  <a href="./LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-f59e0b"></a>
+  <a href="https://github.com/glgreg/keystone/blob/master/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-f59e0b"></a>
   <img alt="version" src="https://img.shields.io/badge/version-1.0.0-0b1120">
-  <img alt="runtime" src="https://img.shields.io/badge/runtime-Bun%20%7C%20Node%2022.18%2B-334155">
+  <img alt="runtime" src="https://img.shields.io/badge/runtime-Bun%20%7C%20Node%2020%2B-334155">
 </p>
 
 ---
@@ -46,8 +46,7 @@ your-project/
 │   ├── standards.md            # Code, testing and Git conventions
 │   ├── state.md                # Setup checklist
 │   ├── templates/stone.md
-│   ├── operations/             # The CLI (TypeScript, no dependencies)
-│   └── bin/keystone            # Launcher that runs it with Bun or Node
+│   └── bin/keystone            # The CLI, runs with Node or Bun
 └── src/
     ├── auth/
     │   ├── tokens.ts
@@ -65,34 +64,19 @@ When an agent picks up a task, it reads in three steps and stops once it has eno
 
 ## Getting started
 
-You need [Bun](https://bun.sh) 1.2+ or Node.js 22.18+ to run the CLI. The stones themselves are plain Markdown and work without it.
-
-**1. Copy the key into your project**
-
-```sh
-git clone --depth 1 https://github.com/glgreg/keystone.git /tmp/keystone
-cp -r /tmp/keystone/.keystone ./
-```
-
-**2. Tell your agent about it**
-
-Add one line to whatever instruction file your agent reads (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.cursorrules`...):
-
-```markdown
-This project uses Keystone for architectural context. Before planning or changing code, read `.keystone/protocol.md` and follow it.
-```
-
-**3. Activate it**
-
-Ask your agent:
+Ask your coding agent:
 
 ```text
-Activate the Keystone protocol at .keystone/protocol.md.
+Set up Keystone in this project with npx @glgreg/keystone init.
 ```
 
-The agent looks around the repository and walks through a short setup. It drafts `identity.md` and `architecture.md` from what it finds, proposes your commit convention based on `git log`, and suggests a first set of stones for the main modules. It asks everything in a single message, waits for your answers, and finishes with **"Keystone ready."** You review each step once, and it remembers your answers in `state.md`.
+That's the whole setup. The agent runs `init`, which adds the `.keystone/` folder and a short pointer to it in your agent instruction files (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md` or `.github/copilot-instructions.md`; if you have none, it creates `AGENTS.md` plus a `CLAUDE.md` that imports it), so every future session finds it on its own. Then it activates Keystone: it drafts `identity.md` and `architecture.md` from what it finds in the repository, proposes a commit convention based on `git log`, and suggests a first set of stones for the main modules. It asks you everything in a single message and finishes with **"Keystone ready."**
 
-**4. Take a look**
+From then on, you just work as usual. Agents read the relevant stones before changing code and keep them up to date as the project evolves.
+
+You need Node.js 20+ or [Bun](https://bun.sh) 1.2+ for the CLI. If you prefer, run `npx @glgreg/keystone init` yourself and then ask your agent to "Activate the Keystone protocol". Running `init` again later updates Keystone and leaves your own files as they are.
+
+To see the result:
 
 ```sh
 .keystone/bin/keystone stone graph
@@ -160,6 +144,7 @@ The header uses a small, predictable subset of YAML: scalars, lists, the `relati
 ## The CLI
 
 ```text
+keystone init                             Install or update Keystone in this project
 keystone stone create <id> --path <dir>   Create a stone next to the code
 keystone stone search [query]             Find stones by id, tags, summary or content
 keystone stone show <id>                  A stone, its neighbors, and what depends on it
@@ -195,7 +180,7 @@ Transitive impact: auth, billing
 
 </details>
 
-`doctor` looks for broken or one-sided links, stones whose folder no longer has any code, an outdated index, and key files that still hold template text. `doctor --fix` repairs the mechanical issues (missing back-links, the index) and leaves the text you wrote as it is.
+`doctor` looks for stones that still hold template text, broken or one-sided links, stones whose folder no longer has any code, an outdated index, and key files that still hold template text. `doctor --fix` repairs the mechanical issues (missing back-links, the index) and leaves the text you wrote as it is.
 
 If you'd like a single executable for CI or a minimal container, compile one:
 
@@ -219,11 +204,11 @@ bun install
 bun run typecheck
 ```
 
-Commit messages follow the convention in [.keystone/standards.md](./.keystone/standards.md).
+Commit messages follow the convention in [.keystone/standards.md](https://github.com/glgreg/keystone/blob/master/.keystone/standards.md).
 
 ## License
 
-Released under the [MIT License](./LICENSE).
+Released under the [MIT License](https://github.com/glgreg/keystone/blob/master/LICENSE).
 
 ---
 

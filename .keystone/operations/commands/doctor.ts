@@ -13,6 +13,7 @@ import type { CommandResult, Context } from "../core/context.ts";
 import { INDEX_END, INDEX_START, TEMPLATE_MARKER, hasTemplateMarker, readState, renderIndex, updateIndex } from "../core/key.ts";
 import { STONE_FILE_PATTERN, headings, writeStone } from "../core/stone.ts";
 import { KEY_FILES, hasKey, keyPath, scan } from "../core/workspace.ts";
+import { loadTemplate } from "./create.ts";
 import { INVERSE_RELATION, RELATION_KINDS, STONE_TYPES } from "../types.ts";
 import type { Diagnostic, RelationKind, Severity, Stone } from "../types.ts";
 
@@ -47,7 +48,7 @@ function checkKey(root: string, push: (d: Diagnostic) => void): void {
       push({ severity: "warning", code: "key-file-missing", message: `.keystone/${KEY_FILES[file]} is missing` });
     }
   }
-  for (const file of ["identity", "architecture"] as const) {
+  for (const file of ["identity", "architecture", "standards"] as const) {
     if (hasTemplateMarker(keyPath(root, file))) {
       push({
         severity: "warning",
@@ -55,6 +56,14 @@ function checkKey(root: string, push: (d: Diagnostic) => void): void {
         message: `.keystone/${KEY_FILES[file]} still contains template content (remove ${TEMPLATE_MARKER} once filled)`,
       });
     }
+  }
+  const assumed = readState(root).filter((item) => /\(assumed\b/i.test(item.line));
+  if (assumed.length > 0) {
+    push({
+      severity: "info",
+      code: "state-assumed",
+      message: `set up without the user's confirmation, review when possible: ${assumed.map((item) => item.name).join(", ")}`,
+    });
   }
   const pending = readState(root).filter((item) => item.status === "pending");
   if (pending.length > 0) {
@@ -64,6 +73,16 @@ function checkKey(root: string, push: (d: Diagnostic) => void): void {
       message: `activation pending in .keystone/state.md: ${pending.map((item) => item.name).join(", ")}`,
     });
   }
+}
+
+const normalize = (text: string) => text.replace(/\s+/g, " ").trim();
+
+/** The guidance paragraphs of the stone template: the text a filled stone replaces. */
+function templateGuidance(root: string): string[] {
+  return loadTemplate(root)
+    .split(/\n\s*\n/)
+    .map(normalize)
+    .filter((paragraph) => paragraph && !paragraph.startsWith("#") && !paragraph.includes("{{"));
 }
 
 function hasCoLocatedSource(stone: Stone): boolean {
@@ -90,6 +109,7 @@ export function diagnose(root: string): DoctorReport {
     byId.set(id, [...(byId.get(id) ?? []), stone]);
   }
 
+  const guidance = templateGuidance(root);
   for (const stone of stones) {
     const at = { stone: stone.meta.id || stone.fileId, path: stone.relPath };
     const { meta } = stone;
@@ -107,6 +127,12 @@ export function diagnose(root: string): DoctorReport {
     }
     if (!meta.summary.trim()) push({ severity: "error", code: "missing-summary", message: "frontmatter has no 'summary'", ...at });
     if (meta.tags.length === 0) push({ severity: "warning", code: "missing-tags", message: "no tags declared; search quality degrades", ...at });
+    const leftover = guidance.filter((paragraph) => normalize(stone.body).includes(paragraph)).length;
+    if (guidance.length > 0 && leftover === guidance.length) {
+      push({ severity: "error", code: "unfilled-stone", message: "body is still the template; describe this module from its code", ...at });
+    } else if (leftover > 0) {
+      push({ severity: "warning", code: "template-text", message: `${plural(leftover, "section still holds", "sections still hold")} template guidance text`, ...at });
+    }
     if (!stone.body.trim()) push({ severity: "warning", code: "empty-body", message: "body is empty; document purpose and invariants", ...at });
     else if (!headings(stone.body).some((heading) => /invariant/i.test(heading))) {
       push({ severity: "info", code: "missing-invariants", message: "no 'Invariants' section found", ...at });

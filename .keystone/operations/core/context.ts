@@ -23,6 +23,6 @@ export function csv(value: string | undefined): string[] {
   return [...new Set(value.split(",").map((item) => item.trim()).filter(Boolean))];
 }
 
-export function plural(count: number, word: string): string {
-  return `${count} ${word}${count === 1 ? "" : "s"}`;
+export function plural(count: number, word: string, pluralWord = `${word}s`): string {
+  return `${count} ${count === 1 ? word : pluralWord}`;
 }

@@ -1,12 +1,18 @@
 #!/bin/sh
 # Keystone portable launcher.
-# Resolution order: compiled binary on PATH, Bun, Node (>= 22.18, native type stripping).
+# Runs the bundled CLI (keystone.js, installed by 'keystone init') or the
+# TypeScript sources, with Bun when available and Node otherwise
+# (Node >= 22.18 for the sources, which relies on native type stripping).
 # Usage: .keystone/bin/keystone stone <command> [options]
 
 set -e
 
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-ENTRY="$SCRIPT_DIR/../operations/stone.ts"
+if [ -f "$SCRIPT_DIR/keystone.js" ]; then
+  ENTRY="$SCRIPT_DIR/keystone.js"
+else
+  ENTRY="$SCRIPT_DIR/../operations/stone.ts"
+fi
 
 if command -v bun >/dev/null 2>&1; then
   exec bun "$ENTRY" "$@"
