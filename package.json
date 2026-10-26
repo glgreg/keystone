@@ -1,6 +1,6 @@
 {
   "name": "@glgreg/keystone",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A context architecture for AI software engineering: small notes next to your code that explain why it is the way it is, for the people and coding agents who work on it.",
   "keywords": [
     "ai",
@@ -45,6 +45,7 @@
     "test": "bun test",
     "build": "bun build --compile --minify .keystone/operations/stone.ts --outfile dist/keystone",
     "build:npm": "bun build --target node .keystone/operations/stone.ts --outfile dist/keystone.js",
+    "version": "node scripts/sync-version.mjs && git add .keystone/operations/cli.ts",
     "prepublishOnly": "bun run typecheck && bun test && bun run build:npm"
   },
   "publishConfig": {

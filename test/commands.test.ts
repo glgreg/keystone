@@ -5,6 +5,7 @@ import { cli, makeProject, seedGraph, stoneSource } from "./helpers.ts";
 import type { Project } from "./helpers.ts";
 import { parseFrontmatter, splitDocument } from "../.keystone/operations/core/frontmatter.ts";
 import { toMeta } from "../.keystone/operations/core/stone.ts";
+import { VERSION } from "../.keystone/operations/cli.ts";
 
 function meta(p: Project, rel: string) {
   return toMeta(parseFrontmatter(splitDocument(p.read(rel)).frontmatter));
@@ -23,7 +24,7 @@ describe("general CLI behavior", () => {
   test("help, version and optional 'stone' namespace", () => {
     const p = fresh(false);
     expect(cli(p.root, "--help").stdout).toContain("Usage:");
-    expect(cli(p.root, "stone", "--version").stdout).toBe("1.0.0");
+    expect(cli(p.root, "stone", "--version").stdout).toBe(VERSION);
     expect(cli(p.root, "doctor").code).toBe(0);
     expect(cli(p.root, "stone", "doctor").code).toBe(0);
   });
