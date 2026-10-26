@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/keystone-banner.svg" alt="Keystone - Context is architecture." width="100%">
+  <img src="https://raw.githubusercontent.com/glgreg/keystone/master/assets/keystone-banner.svg" alt="Keystone - Context is architecture." width="100%">
 </p>
 
 <p align="center">
@@ -8,9 +8,9 @@
 </p>
 
 <p align="center">
-  <a href="./LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-f59e0b"></a>
+  <a href="https://github.com/glgreg/keystone/blob/master/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-f59e0b"></a>
   <img alt="version" src="https://img.shields.io/badge/version-1.0.0-0b1120">
-  <img alt="runtime" src="https://img.shields.io/badge/runtime-Bun%20%7C%20Node%2022.18%2B-334155">
+  <img alt="runtime" src="https://img.shields.io/badge/runtime-Bun%20%7C%20Node%2020%2B-334155">
 </p>
 
 ---
@@ -74,7 +74,7 @@ That's the whole setup. The agent runs `init`, which adds the `.keystone/` folde
 
 From then on, you just work as usual. Agents read the relevant stones before changing code and keep them up to date as the project evolves.
 
-You need Node.js 22.18+ or [Bun](https://bun.sh) 1.2+ for the CLI. If you prefer, run `npx @glgreg/keystone init` yourself and then ask your agent to "Activate the Keystone protocol". Running `init` again later updates Keystone and leaves your own files as they are.
+You need Node.js 20+ or [Bun](https://bun.sh) 1.2+ for the CLI. If you prefer, run `npx @glgreg/keystone init` yourself and then ask your agent to "Activate the Keystone protocol". Running `init` again later updates Keystone and leaves your own files as they are.
 
 To see the result:
 
@@ -204,11 +204,11 @@ bun install
 bun run typecheck
 ```
 
-Commit messages follow the convention in [.keystone/standards.md](./.keystone/standards.md).
+Commit messages follow the convention in [.keystone/standards.md](https://github.com/glgreg/keystone/blob/master/.keystone/standards.md).
 
 ## License
 
-Released under the [MIT License](./LICENSE).
+Released under the [MIT License](https://github.com/glgreg/keystone/blob/master/LICENSE).
 
 ---
 

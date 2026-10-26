@@ -32,10 +32,12 @@
   },
   "files": [
     "dist/keystone.js",
-    ".keystone/"
+    ".keystone/*.md",
+    ".keystone/bin/keystone",
+    ".keystone/templates/"
   ],
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=20"
   },
   "scripts": {
     "keystone": "bun .keystone/operations/stone.ts",
