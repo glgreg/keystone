@@ -45,6 +45,7 @@
     "test": "bun test",
     "build": "bun build --compile --minify .keystone/operations/stone.ts --outfile dist/keystone",
     "build:npm": "bun build --target node .keystone/operations/stone.ts --outfile dist/keystone.js",
+    "version": "node scripts/sync-version.mjs && git add .keystone/operations/cli.ts",
     "prepublishOnly": "bun run typecheck && bun test && bun run build:npm"
   },
   "publishConfig": {

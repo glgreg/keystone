@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://github.com/glgreg/keystone/blob/master/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-f59e0b"></a>
-  <img alt="version" src="https://img.shields.io/badge/version-1.0.0-0b1120">
+  <a href="https://www.npmjs.com/package/@glgreg/keystone"><img alt="npm" src="https://img.shields.io/npm/v/%40glgreg%2Fkeystone?color=0b1120"></a>
   <img alt="runtime" src="https://img.shields.io/badge/runtime-Bun%20%7C%20Node%2020%2B-334155">
 </p>
 
