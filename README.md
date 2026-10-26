@@ -202,6 +202,7 @@ Issues and ideas are welcome. Before opening a pull request, run:
 ```sh
 bun install
 bun run typecheck
+bun test
 ```
 
 Commit messages follow the convention in [.keystone/standards.md](https://github.com/glgreg/keystone/blob/master/.keystone/standards.md).
