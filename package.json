@@ -42,9 +42,10 @@
   "scripts": {
     "keystone": "bun .keystone/operations/stone.ts",
     "typecheck": "tsc --noEmit",
+    "test": "bun test",
     "build": "bun build --compile --minify .keystone/operations/stone.ts --outfile dist/keystone",
     "build:npm": "bun build --target node .keystone/operations/stone.ts --outfile dist/keystone.js",
-    "prepublishOnly": "bun run typecheck && bun run build:npm"
+    "prepublishOnly": "bun run typecheck && bun test && bun run build:npm"
   },
   "publishConfig": {
     "access": "public"

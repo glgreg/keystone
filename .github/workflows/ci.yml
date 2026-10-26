@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.2.22
+      # The runtime tests run the TypeScript sources with Node (type stripping needs 22.18+).
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - run: bun install --frozen-lockfile
+      - run: bun run typecheck
+      - run: bun test
+      - run: bun run build:npm
+      - run: npm pack
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package
+          path: glgreg-keystone-*.tgz
+
+  # Installs the packed tarball the way users do (npx, no Bun) on every supported Node.
+  package:
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 22, 24, 26]
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: package
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node }}
+      - name: init and use Keystone in a fresh project
+        run: |
+          tarball="$PWD/$(ls glgreg-keystone-*.tgz)"
+          mkdir -p demo/src/auth && cd demo && git init -q
+          npx --yes "file:$tarball" init
+          test -f .keystone/bin/keystone.js
+          test ! -d .keystone/operations
+          grep -q ".keystone/protocol.md" AGENTS.md
+          .keystone/bin/keystone stone doctor
+          .keystone/bin/keystone stone create auth --path src/auth --summary "Auth tokens"
+          .keystone/bin/keystone stone search auth
+          .keystone/bin/keystone stone graph

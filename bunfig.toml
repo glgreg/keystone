@@ -1,0 +1,3 @@
+[test]
+# Unit tests only; testes/ holds local agent runs and project clones.
+root = "./test"

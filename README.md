@@ -190,7 +190,7 @@ bun build --compile .keystone/operations/stone.ts --outfile keystone
 
 ## Roadmap
 
-- Publishing to npm as `@glgreg/keystone`, plus prebuilt binaries
+- Prebuilt binaries
 - An interactive graph explorer in the terminal
 - Optional semantic search as a fallback for large graphs
 - Starter templates per stone type
@@ -202,6 +202,7 @@ Issues and ideas are welcome. Before opening a pull request, run:
 ```sh
 bun install
 bun run typecheck
+bun test
 ```
 
 Commit messages follow the convention in [.keystone/standards.md](https://github.com/glgreg/keystone/blob/master/.keystone/standards.md).
