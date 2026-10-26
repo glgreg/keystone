@@ -190,7 +190,7 @@ bun build --compile .keystone/operations/stone.ts --outfile keystone
 
 ## Roadmap
 
-- Publishing to npm as `@glgreg/keystone`, plus prebuilt binaries
+- Prebuilt binaries
 - An interactive graph explorer in the terminal
 - Optional semantic search as a fallback for large graphs
 - Starter templates per stone type
