@@ -1,6 +1,6 @@
 {
   "name": "@glgreg/keystone",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A context architecture for AI software engineering: small notes next to your code that explain why it is the way it is, for the people and coding agents who work on it.",
   "keywords": [
     "ai",
